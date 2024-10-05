@@ -165,15 +165,6 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
-  SwitchAction:
-    m_Name: Switch
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ca5a059a-8872-4634-b2ba-8611b8030bef
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   jumpForce: 500
   speed: 25
   maxSpeed: 10

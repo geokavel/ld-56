@@ -20,10 +20,12 @@ public class PlayerController : MonoBehaviour
     int nextScene = -1;
     int curScene = 1;
     // Start is called before the first frame update
+    Animator anim;
     void Start()
     {
       rigidbody2d = GetComponent<Rigidbody2D>();
       sprite = GetComponent<SpriteRenderer>();
+      anim = GetComponent<Animator>();
       MoveAction.Enable();  
     }
 
@@ -57,6 +59,10 @@ public class PlayerController : MonoBehaviour
             //if(Mathf.Approximately(vel.x,0) || dirInputX != dirVelX) {
             if(Math.Abs(vel.x) < maxSpeed) {
                 rigidbody2d.AddForce( new Vector2(speed * dirInputX,0));
+                anim.Play("Move");
+            }
+            else{
+                anim.Play("Idle");
             }
                
             //}
