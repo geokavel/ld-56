@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour
 
         // Move the camera smoothly to the current frame
         Vector3 desiredPosition = frames[currentFrameIndex].transform.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.fixedDeltaTime);
         transform.position = smoothedPosition;
     }
 

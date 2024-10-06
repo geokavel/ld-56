@@ -606,7 +606,7 @@ MonoBehaviour:
   levels: {fileID: 1047028839}
   cameraTrigger: {fileID: 246497297}
   playerLerpSpeed: 5
-  smoothSpeed: 0.25
+  smoothSpeed: 0.5
   offset: {x: 0, y: 0, z: -10}
   xOffset: 20
   maxActiveFrames: 5
