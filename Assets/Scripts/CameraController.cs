@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     private bool panning;
 
     private void FixedUpdate(){
-        LerpPlayer();
+    //    LerpPlayer();
     }
 
     private void LateUpdate()

@@ -585,8 +585,8 @@ MonoBehaviour:
   - {fileID: 943828239}
   playerStart: {fileID: 242055324}
   playerRB: {fileID: 119328845}
-  smoothSpeed: 0.0125
-  playerLerpSpeed: 5
+  smoothSpeed: 0.25
+  playerLerpSpeed: 10
   offset: {x: 0, y: 0, z: -10}
 --- !u!1001 &1561749896
 PrefabInstance:
