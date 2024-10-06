@@ -27,14 +27,14 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        if (levels != null)
+       /* if (levels != null)
         {
             // Loop through all children of the Levels GameObject and destroy them
             foreach (Transform child in levels.transform)
             {
                 Destroy(child.gameObject);
             }
-        }
+        }   */
         // Spawn the initial 4 frames at the start
         for (int i = 0; i < 4; i++)
         {
