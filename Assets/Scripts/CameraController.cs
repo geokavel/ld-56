@@ -27,18 +27,18 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-       /* if (levels != null)
+       if (levels != null)
         {
             // Loop through all children of the Levels GameObject and destroy them
             foreach (Transform child in levels.transform)
             {
                 Destroy(child.gameObject);
             }
-        }   */
+        }   
         // Spawn the initial 4 frames at the start
         for (int i = 0; i < 4; i++)
         {
-            Vector3 newFramePosition = new Vector3(i * xOffset, 0, 0); // Spawns frames to the right
+            Vector3 newFramePosition = new Vector3(i * xOffset, levels.transform.position.y, 0); // Spawns frames to the right
             GameObject frame = Instantiate(framePrefabs[i], newFramePosition, Quaternion.identity);
             frames.Add(frame);
             frame.transform.SetParent(levels.transform);
@@ -63,7 +63,7 @@ public class CameraController : MonoBehaviour
     public void MoveToNextFrame()
     {
         // Check if creaturesCollected equals the number needed to spawn Frame 5
-        if (creaturesCollected == creaturesToCollect)
+        if (creaturesCollected >= creaturesToCollect)
         {
             // Spawn Frame 5 (index 4 in the array)
             SpawnFrame(4);  // Frame 5 is at index 4
@@ -76,7 +76,7 @@ public class CameraController : MonoBehaviour
         else
         {
             // Check if we've reached the last currently spawned frame
-            if (currentFrameIndex == frames.Count - 1)
+            if (currentFrameIndex + 2 == frames.Count - 1)
             {
                 // Spawn the next frame in the sequence (looping through framePrefabs 1-4)
                 SpawnFrame();
