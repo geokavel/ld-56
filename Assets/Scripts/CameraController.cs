@@ -35,8 +35,8 @@ public class CameraController : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }   
-        // Spawn the initial 4 frames at the start
-        for (int i = 0; i < 4; i++)
+        // Spawn the initial frames at the start
+        for (int i = 0; i < maxActiveFrames; i++)
         {
             Vector3 newFramePosition = new Vector3(i * xOffset, levels.transform.position.y, 0); // Spawns frames to the right
             GameObject frame = Instantiate(framePrefabs[i], newFramePosition, Quaternion.identity);
