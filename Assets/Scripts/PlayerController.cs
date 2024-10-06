@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     int nextScene = -1;
     int curScene = 1;
     int creatureCount = 0;
+    int dirInputX;
     Transform creatures;
     // Start is called before the first frame update
     Animator anim;
@@ -55,6 +56,14 @@ public class PlayerController : MonoBehaviour
             else if(nextScene==2) {
                 y = 13;
                 curScene = 2;
+            }
+            else if(nextScene==3) {
+                y = 26;
+                curScene = 3;
+            }
+            else if(nextScene==4) {
+                y = 39;
+                curScene = 4;
             } 
             if(!float.IsNaN(y)) {
                 transform.position = new Vector2(pos.x,y);
@@ -67,7 +76,7 @@ public class PlayerController : MonoBehaviour
         Vector2 vel = rigidbody2d.velocity;
         anim.SetFloat("Velocity",Mathf.Sign(vel.x)*vel.magnitude);
         if(!Mathf.Approximately(inputX,0)) {
-            int dirInputX = Math.Sign(inputX);
+            dirInputX = Math.Sign(inputX);
             //sprite.flipX = dirInputX == 1;
             if(dirInputX == 1) {
                 //transform.Rotate(0,180,0);
@@ -76,7 +85,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Flip",dirInputX == 1);
             if(creatures != null) {
                 creatures.transform.localPosition = new Vector2(-1*dirInputX,0);
-                creatures.transform.rotation = Quaternion.Euler(new Vector3(0,dirInputX==1 ?180 : 0,0)); 
+                creatures.transform.rotation = Quaternion.Euler(new Vector3(0,dirInputX==-1 ?180 : 0,0)); 
             }
             //int dirVelX = Math.Sign(vel.x);
             //if(Mathf.Approximately(vel.x,0) || dirInputX != dirVelX) {
@@ -114,8 +123,8 @@ public class PlayerController : MonoBehaviour
             creature.GetComponent<Collider2D>().enabled = false;
             creature.transform.SetParent(creatures);
             Vector2 creaturePos = creature.transform.position;
-            creature.transform.localPosition = new Vector2(creatureCount-1,0);
-            //creature.transform.Rotate(new Vector3(0,180,0));
+            creature.transform.localPosition = new Vector2(1-creatureCount,0);
+            creature.transform.rotation = Quaternion.Euler(0,dirInputX==-1 ? 180: 0,0);
         }
     }
 }

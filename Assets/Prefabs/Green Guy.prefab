@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4380656125999911429}
   - component: {fileID: 5312470607471044332}
   - component: {fileID: 797686726956225927}
-  - component: {fileID: 1623142284763807732}
+  - component: {fileID: 7069208864854622999}
   - component: {fileID: 7190155022449727286}
   - component: {fileID: 3780404695219894774}
   m_Layer: 0
@@ -200,8 +200,8 @@ MonoBehaviour:
   jumpForce: 500
   speed: 25
   maxSpeed: 10
---- !u!61 &1623142284763807732
-BoxCollider2D:
+--- !u!70 &7069208864854622999
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -232,19 +232,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.4769271}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.0454212}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0.5}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!50 &7190155022449727286
 Rigidbody2D:
   serializedVersion: 4
@@ -258,7 +248,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3
+  m_LinearDrag: 2
   m_AngularDrag: 3
   m_GravityScale: 1
   m_Material: {fileID: 0}
