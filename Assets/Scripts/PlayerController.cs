@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sprite;
     int nextScene = -1;
     int curScene = 1;
+    int creatures = 0;
+    GameObject myCreature;
     // Start is called before the first frame update
     Animator anim;
     void Start()
@@ -52,17 +54,26 @@ public class PlayerController : MonoBehaviour
         nextScene = -1;
         
         Vector2 vel = rigidbody2d.velocity;
+        anim.SetFloat("Velocity",Math.Abs(vel.magnitude));
         if(!Mathf.Approximately(inputX,0)) {
             int dirInputX = Math.Sign(inputX);
-            sprite.flipX = dirInputX == 1;
+            //sprite.flipX = dirInputX == 1;
+            if(dirInputX == 1) {
+                //transform.Rotate(0,180,0);
+                //transform.rotation = Quaternion.Euler(0,180,0); 
+            }
+            anim.SetBool("Flip",dirInputX == 1);
+            if(myCreature != null) {
+                myCreature.transform.localPosition = new Vector2(-1*dirInputX,0);
+                myCreature.transform.rotation = Quaternion.Euler(new Vector3(0,dirInputX==1 ?180 : 0,0)); 
+            }
             //int dirVelX = Math.Sign(vel.x);
             //if(Mathf.Approximately(vel.x,0) || dirInputX != dirVelX) {
             if(Math.Abs(vel.x) < maxSpeed) {
                 rigidbody2d.AddForce( new Vector2(speed * dirInputX,0));
-                anim.Play("Move");
             }
             else{
-                anim.Play("Idle");
+                //anim.Play("Idle");
             }
                
             //}
@@ -89,5 +100,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log(creature);
         creature.GetComponent<Collider2D>().enabled = false;
         creature.transform.SetParent(transform);
+        Vector2 creaturePos = creature.transform.position;
+        creature.transform.localPosition = new Vector2(-1,0);
+        creature.transform.Rotate(new Vector3(0,180,0));
+        myCreature = creature;
     }
 }
