@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sprite;
     int nextScene = -1;
     int curScene = 1;
-    int creatures = 0;
-    GameObject myCreature;
+    int creatureCount = 0;
+    Transform creatures;
     // Start is called before the first frame update
     Animator anim;
     void Start()
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
       sprite = GetComponent<SpriteRenderer>();
       anim = GetComponent<Animator>();
       MoveAction.Enable();  
+      creatures = transform.Find("Creatures");
     }
 
     // Update is called once per frame
@@ -45,16 +46,26 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate() {
         Vector2 pos = rigidbody2d.position;
-        if(nextScene != -1 && nextScene != curScene) {
-            float y = 0;
-            if(nextScene==1) y = -1;
-            else if(nextScene==2) y = 13;
-            rigidbody2d.MovePosition(new Vector2(pos.x,y));
+        if(nextScene != -1) {
+            float y = float.NaN;
+            if(nextScene==1) {
+                y = -1;
+                curScene = 1;
+            } 
+            else if(nextScene==2) {
+                y = 13;
+                curScene = 2;
+            } 
+            if(!float.IsNaN(y)) {
+                transform.position = new Vector2(pos.x,y);
+                //rigidbody2d.MovePosition(new Vector2(pos.x,y));
+            }
+            
         }
         nextScene = -1;
         
         Vector2 vel = rigidbody2d.velocity;
-        anim.SetFloat("Velocity",Math.Abs(vel.magnitude));
+        anim.SetFloat("Velocity",Mathf.Sign(vel.x)*vel.magnitude);
         if(!Mathf.Approximately(inputX,0)) {
             int dirInputX = Math.Sign(inputX);
             //sprite.flipX = dirInputX == 1;
@@ -63,9 +74,9 @@ public class PlayerController : MonoBehaviour
                 //transform.rotation = Quaternion.Euler(0,180,0); 
             }
             anim.SetBool("Flip",dirInputX == 1);
-            if(myCreature != null) {
-                myCreature.transform.localPosition = new Vector2(-1*dirInputX,0);
-                myCreature.transform.rotation = Quaternion.Euler(new Vector3(0,dirInputX==1 ?180 : 0,0)); 
+            if(creatures != null) {
+                creatures.transform.localPosition = new Vector2(-1*dirInputX,0);
+                creatures.transform.rotation = Quaternion.Euler(new Vector3(0,dirInputX==1 ?180 : 0,0)); 
             }
             //int dirVelX = Math.Sign(vel.x);
             //if(Mathf.Approximately(vel.x,0) || dirInputX != dirVelX) {
@@ -96,13 +107,15 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        GameObject creature = other.gameObject;
-        Debug.Log(creature);
-        creature.GetComponent<Collider2D>().enabled = false;
-        creature.transform.SetParent(transform);
-        Vector2 creaturePos = creature.transform.position;
-        creature.transform.localPosition = new Vector2(-1,0);
-        creature.transform.Rotate(new Vector3(0,180,0));
-        myCreature = creature;
+        if(other.CompareTag("Creature")) {
+            creatureCount++;
+            GameObject creature = other.gameObject;
+            Debug.Log($"Collected {creature.name} ({creatureCount}/4)");
+            creature.GetComponent<Collider2D>().enabled = false;
+            creature.transform.SetParent(creatures);
+            Vector2 creaturePos = creature.transform.position;
+            creature.transform.localPosition = new Vector2(creatureCount-1,0);
+            //creature.transform.Rotate(new Vector3(0,180,0));
+        }
     }
 }
