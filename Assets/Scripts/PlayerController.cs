@@ -53,10 +53,10 @@ public class PlayerController : MonoBehaviour
         Vector2 input = MoveAction.ReadValue<Vector2>();
         inputX = input.x;
         inputY = input.y;
-        if(Keyboard.current.digit1Key.isPressed) nextScene = 1;
+       /* if(Keyboard.current.digit1Key.isPressed) nextScene = 1;
         else if(Keyboard.current.digit2Key.isPressed) nextScene = 2;
         else if(Keyboard.current.digit3Key.isPressed) nextScene = 3;
-        else if(Keyboard.current.digit4Key.isPressed) nextScene = 4; 
+        else if(Keyboard.current.digit4Key.isPressed) nextScene = 4; */
     }
 
     void FixedUpdate() {
