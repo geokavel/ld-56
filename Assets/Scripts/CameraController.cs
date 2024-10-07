@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     private List<GameObject> frames = new List<GameObject>();  // List of spawned frames
     private Transform lastFrame;       // Keeps track of the last spawned frame
 
-    private int currentFrameIndex = 0; // Tracks the current frame the camera is focusing on
+    public int currentFrameIndex = 0; // Tracks the current frame the camera is focusing on
     private int frameCloneIndex = 0;   // Tracks which frame prefab to clone next (loops 0 to 3)
     public int maxActiveFrames = 5;    // Max number of frames active at a time
 

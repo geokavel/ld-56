@@ -154,6 +154,7 @@ MonoBehaviour:
   smoothSpeed: 0.25
   offset: {x: 20, y: 0, z: -10}
   xOffset: 20
+  currentFrameIndex: 0
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
@@ -313,10 +314,11 @@ MonoBehaviour:
   smoothSpeed: 0.25
   offset: {x: 20, y: 0, z: -10}
   xOffset: 20
+  currentFrameIndex: 0
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
-  currentDM: 1
+  currentDM: 3
   DMCameras: []
 --- !u!1 &1018174056739820272
 GameObject:
@@ -439,10 +441,11 @@ MonoBehaviour:
   smoothSpeed: 0.5
   offset: {x: 0, y: 0, z: -10}
   xOffset: 20
+  currentFrameIndex: 0
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
-  currentDM: 1
+  currentDM: 0
   DMCameras:
   - {fileID: 7135474738364976276}
   - {fileID: 4243084425133821256}
@@ -587,6 +590,7 @@ MonoBehaviour:
   - {fileID: 4243084425133821256}
   - {fileID: 7962161505307246468}
   - {fileID: 3005794521435112707}
+  mainLevelFrame: {fileID: 0}
 --- !u!1 &2689392654720603642
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,10 +745,11 @@ MonoBehaviour:
   smoothSpeed: 0.25
   offset: {x: 20, y: 0, z: -10}
   xOffset: 20
+  currentFrameIndex: 0
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
-  currentDM: 1
+  currentDM: 0
   DMCameras: []
 --- !u!1 &4044677546783479000
 GameObject:
@@ -900,10 +905,11 @@ MonoBehaviour:
   smoothSpeed: 0.25
   offset: {x: 20, y: 0, z: -10}
   xOffset: 20
+  currentFrameIndex: 0
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
-  currentDM: 1
+  currentDM: 2
   DMCameras: []
 --- !u!1 &5388778440190672498
 GameObject:
