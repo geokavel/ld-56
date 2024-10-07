@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sprite;
     int nextScene = -1;
     int curScene = 1;
-    int creatureCount = 0;
+    public int creatureCount = 0;
     int dirInputX;
     Transform creatures;
     // Start is called before the first frame update
@@ -53,10 +53,10 @@ public class PlayerController : MonoBehaviour
         Vector2 input = MoveAction.ReadValue<Vector2>();
         inputX = input.x;
         inputY = input.y;
-       /* if(Keyboard.current.digit1Key.isPressed) nextScene = 1;
-        else if(Keyboard.current.digit2Key.isPressed) nextScene = 2;
-        else if(Keyboard.current.digit3Key.isPressed) nextScene = 3;
-        else if(Keyboard.current.digit4Key.isPressed) nextScene = 4; */
+        if(Keyboard.current.digit7Key.isPressed) nextScene = 1;
+        else if(Keyboard.current.digit8Key.isPressed) nextScene = 2;
+        else if(Keyboard.current.digit9Key.isPressed) nextScene = 3;
+        else if(Keyboard.current.digit0Key.isPressed) nextScene = 4; 
     }
 
     void FixedUpdate() {
