@@ -8,10 +8,18 @@ using UnityEngine.Timeline;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+    public GameObject spawnPoint; 
     public InputAction MoveAction;
+    public InputAction ShootAction;
+    public int maxHealth;
+    int health;
     public float jumpForce;
     public float speed;
     public float maxSpeed;
+    public float shootForceX;
+    public float shootForceY;
+    public float shootTorque;
     Rigidbody2D rigidbody2d;
     float inputX;
     float inputY;
@@ -24,12 +32,18 @@ public class PlayerController : MonoBehaviour
     Transform creatures;
     // Start is called before the first frame update
     Animator anim;
+    void Awake() {
+        instance = this;
+    }
     void Start()
     {
+      health = maxHealth;
       rigidbody2d = GetComponent<Rigidbody2D>();
       sprite = GetComponent<SpriteRenderer>();
       anim = GetComponent<Animator>();
-      MoveAction.Enable();  
+      MoveAction.Enable();
+      ShootAction.Enable();
+      ShootAction.performed += Shoot;
       creatures = transform.Find("Creatures");
     }
 
@@ -84,7 +98,8 @@ public class PlayerController : MonoBehaviour
             }
             anim.SetBool("Flip",dirInputX == 1);
             if(creatures != null) {
-                creatures.transform.localPosition = new Vector2(-1*dirInputX,0);
+                float creaturesX = creatures.transform.localPosition.x;
+                creatures.transform.localPosition = new Vector2(-dirInputX*Mathf.Abs(creaturesX),0);
                 creatures.transform.rotation = Quaternion.Euler(new Vector3(0,dirInputX==-1 ?180 : 0,0)); 
             }
             //int dirVelX = Math.Sign(vel.x);
@@ -109,6 +124,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ChangeHealth(int amount) {
+        health += amount;
+        Debug.Log("Health= "+health);
+    }
+
     void OnCollisionEnter2D(Collision2D other) {
         //if(other.gameObject.GetComponent<Tilemap>() != null) {
             jumping = false;
@@ -116,15 +136,31 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log(other.gameObject);
         if(other.CompareTag("Creature")) {
             creatureCount++;
             GameObject creature = other.gameObject;
             Debug.Log($"Collected {creature.name} ({creatureCount}/4)");
-            creature.GetComponent<Collider2D>().enabled = false;
+            creature.GetComponent<Collider2D>().isTrigger = false;
+            creature.GetComponent<Rigidbody2D>().simulated = false;
             creature.transform.SetParent(creatures);
-            Vector2 creaturePos = creature.transform.position;
-            creature.transform.localPosition = new Vector2(1-creatureCount,0);
+            float creaturesX = creatures.transform.localPosition.x;
+            creature.transform.localPosition = new Vector2(Mathf.Abs(creaturesX)-creatureCount,0);
             creature.transform.rotation = Quaternion.Euler(0,dirInputX==-1 ? 180: 0,0);
         }
+    }
+
+    void Shoot(InputAction.CallbackContext c) {
+        if(creatureCount > 0) {
+            Transform firstCreature = creatures.GetChild(0);
+            firstCreature.GetComponent<CreatureController>()
+            .Shoot(new Vector2(dirInputX*shootForceX,shootForceY),
+            -shootTorque*dirInputX);
+            Vector2 pos = creatures.transform.position;
+            pos.x += 1*dirInputX;
+            creatures.transform.position = pos;
+            creatureCount--;
+        }
+       
     }
 }

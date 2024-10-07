@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6510602489488096529}
   - component: {fileID: 9108665712224735925}
   - component: {fileID: 5416216925539181419}
+  - component: {fileID: 858822407776565647}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Creature
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 415781239
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1896848334, guid: f4cf0d77a51218345aadefd80f40ef61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -152,3 +153,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.94387245, y: 0.6405544}
   m_EdgeRadius: 0
+--- !u!50 &858822407776565647
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254320550812779999}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

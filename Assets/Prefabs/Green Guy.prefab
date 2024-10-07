@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 783437427848086684}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Creatures
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 7724445058670043668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fcdd14442a06f94c9ab27885a0c5b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
   MoveAction:
     m_Name: Move
     m_Type: 0
@@ -197,9 +198,30 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
+  ShootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1c78e615-f717-41fd-9334-c3359837d518
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 543eec6b-1a29-4a86-8077-8bb02b0c15ff
+      m_Path: <Keyboard>/z
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
+    m_Flags: 0
+  maxHealth: 3
   jumpForce: 500
   speed: 25
   maxSpeed: 10
+  shootForceX: 400
+  shootForceY: 300
+  shootTorque: 10
 --- !u!70 &7069208864854622999
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
