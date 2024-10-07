@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;  // Import the Scene Management namespace
-
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
 
+    
     public int currentDM;
     public CameraController mainCam;
+
+    public PlayerController player;
 
     // Update is called once per frame
     void Update()
     {
         mainCam.currentDM = currentDM;
+
+        mainCam.creaturesCollected =  player.creatureCount;
 
         // Detect when the R key is pressed
         if (Input.GetKeyDown(KeyCode.R))
