@@ -284,6 +284,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4348861078708936780, guid: c70b1faa393d84149a185167e71f8293, type: 3}
   m_PrefabInstance: {fileID: 964611675}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1414906208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3620295440628896727, guid: 32179f1ae852248f5b6762666c393fd7, type: 3}
+  m_PrefabInstance: {fileID: 439824151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7cbbe0182d544e583d0abb5af64f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1561749896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -434,6 +445,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2053909656885468327, guid: 3fbcdead6cd6a43e4974547ce77d0f07, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 1414906208}
     - target: {fileID: 9003282280656831388, guid: 3fbcdead6cd6a43e4974547ce77d0f07, type: 3}
       propertyPath: m_Name
       value: Canvas
