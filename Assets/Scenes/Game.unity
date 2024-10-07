@@ -274,6 +274,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c70b1faa393d84149a185167e71f8293, type: 3}
+--- !u!114 &979507675 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 797686726956225927, guid: 0ca1daa45aa161c4aabcf0f9bb3eaf2e, type: 3}
+  m_PrefabInstance: {fileID: 1561749896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fcdd14442a06f94c9ab27885a0c5b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1076072984 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9117765290433835467, guid: c70b1faa393d84149a185167e71f8293, type: 3}
@@ -445,6 +456,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2053909656885468327, guid: 3fbcdead6cd6a43e4974547ce77d0f07, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 979507675}
     - target: {fileID: 2053909656885468327, guid: 3fbcdead6cd6a43e4974547ce77d0f07, type: 3}
       propertyPath: mainCam
       value: 
