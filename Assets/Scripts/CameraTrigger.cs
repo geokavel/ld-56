@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraTrigger : MonoBehaviour
 {
     private CameraController cameraController;
+    public CameraController[] DMCameras;
 
     private void Start()
     {
@@ -19,7 +20,11 @@ public class CameraTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             cameraController.MoveToNextFrame();
-            
+
+            for (int i = 0; i < DMCameras.Length; i++)     
+            {
+                DMCameras[i].MoveToNextFrame();
+            }       
         }
     }   
 }
