@@ -36,7 +36,8 @@ public class CreatureController : MonoBehaviour
                 //transform.position = PlayerController.instance.spawnPoint.transform.position;
                 GetComponent<BoxCollider2D>().isTrigger = true;
                 Debug.Log($"{transform.gameObject.name} Respawn");
-                Instantiate(prefab,PlayerController.instance.spawnPoint.transform.position,Quaternion.identity);
+                GameObject obj = Instantiate(prefab,PlayerController.instance.spawnPoint.transform.position,Quaternion.identity);
+                obj.layer = 0;
                 Destroy(gameObject);
             }
         }
