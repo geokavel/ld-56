@@ -157,6 +157,8 @@ MonoBehaviour:
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
+  currentDM: 1
+  DMCameras: []
 --- !u!1 &1012325834922980816
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +316,8 @@ MonoBehaviour:
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
+  currentDM: 1
+  DMCameras: []
 --- !u!1 &1018174056739820272
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +442,12 @@ MonoBehaviour:
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
+  currentDM: 1
+  DMCameras:
+  - {fileID: 7135474738364976276}
+  - {fileID: 4243084425133821256}
+  - {fileID: 7962161505307246468}
+  - {fileID: 3005794521435112707}
 --- !u!114 &5378170547266959046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +744,8 @@ MonoBehaviour:
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
+  currentDM: 1
+  DMCameras: []
 --- !u!1 &4044677546783479000
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +903,8 @@ MonoBehaviour:
   maxActiveFrames: 5
   creaturesCollected: 0
   creaturesToCollect: 4
+  currentDM: 1
+  DMCameras: []
 --- !u!1 &5388778440190672498
 GameObject:
   m_ObjectHideFlags: 0

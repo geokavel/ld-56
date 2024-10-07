@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: levels
       value: 
       objectReference: {fileID: 288121643}
+    - target: {fileID: 3620295440628896727, guid: 32179f1ae852248f5b6762666c393fd7, type: 3}
+      propertyPath: currentDM
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4243084425133821256, guid: 32179f1ae852248f5b6762666c393fd7, type: 3}
       propertyPath: levels
       value: 

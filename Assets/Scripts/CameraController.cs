@@ -25,8 +25,26 @@ public class CameraController : MonoBehaviour
     public int creaturesCollected;
     public int creaturesToCollect = 4;
 
+    public int currentDM = 0;
+    public CameraController[] DMCameras;
+    
     private void Start()
     {
+        
+        if (transform.CompareTag("MainCamera") == true){
+            // Clear any existing frames under the "Levels" GameObject
+            ClearFrames();
+
+
+            // Assign the framePrefabs from the selected dimension (DM) to the MainCamera
+            framePrefabs = DMCameras[currentDM].framePrefabs;
+
+
+            // Spawn frames for the current dimension
+            SpawnCurrentDMFrames();
+            
+
+        }
        if (levels != null)
         {
             // Loop through all children of the Levels GameObject and destroy them
@@ -42,6 +60,10 @@ public class CameraController : MonoBehaviour
             GameObject frame = Instantiate(framePrefabs[i], newFramePosition, Quaternion.identity);
             frames.Add(frame);
             frame.transform.SetParent(levels.transform);
+
+            
+
+
         }
 
         // Set the last frame reference to the first frame (start of the loop)
@@ -52,16 +74,79 @@ public class CameraController : MonoBehaviour
     {
         // Ensure currentFrameIndex is within the valid range of the frames list
         currentFrameIndex = Mathf.Clamp(currentFrameIndex, 0, frames.Count - 1);
+        // Ensure the frame we are focusing on exists and has not been destroyed
+        if (frames.Count > 0 && frames[currentFrameIndex] != null)
+        {
+            // Move the camera smoothly to the current frame
+            Vector3 desiredPosition = frames[currentFrameIndex].transform.position + offset;
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.fixedDeltaTime);
+            transform.position = smoothedPosition;
+        }
 
-        // Move the camera smoothly to the current frame
-        Vector3 desiredPosition = frames[currentFrameIndex].transform.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.fixedDeltaTime);
-        transform.position = smoothedPosition;
+        
     }
 
-        // This method can be used to manually move to the next frame (e.g., triggered by an event)
+    // Spawn frames for the current dimension
+    private void SpawnCurrentDMFrames()
+    {
+        // Destroy any existing frames
+        ClearFrames();
+
+        // Spawn frames using the assigned framePrefabs (now set to the current DM's prefabs)
+        for (int i = 0; i < maxActiveFrames; i++)
+        {
+            Vector3 newFramePosition = new Vector3(i * xOffset, levels.transform.position.y, 0); // Spawns frames to the right
+            GameObject frame = Instantiate(framePrefabs[i], newFramePosition, Quaternion.identity);
+            frames.Add(frame);
+            frame.transform.SetParent(levels.transform);  // Parent frames to "Levels"
+        }
+
+        // Set the last frame reference to the first frame (start of the loop)
+        if (frames.Count > 0)
+        {
+            lastFrame = frames[frames.Count - 1].transform;
+        }
+    }
+
+
+    // Clears all frames in the "Levels" GameObject
+    private void ClearFrames()
+    {
+        if (levels != null)
+        {
+            foreach (Transform child in levels.transform)
+            {
+                Destroy(child.gameObject);  // Destroy all child GameObjects under "Levels"
+            }
+
+            frames.Clear();  // Clear the frames list
+            currentFrameIndex = DMCameras[currentDM].currentFrameIndex;
+        }
+    }
+
+
+
+
+    // This method can be used to manually move to the next frame (e.g., triggered by an event)
     public void MoveToNextFrame()
     {
+        if (transform.CompareTag("MainCamera"))
+        {
+            // Clear frames and add the next frames for the selected dimension
+            ClearFrames();
+
+            // Assign the framePrefabs from the selected dimension to the MainCamera
+            framePrefabs = DMCameras[currentDM].framePrefabs;
+
+            // Spawn frames based on the currentDM
+            SpawnCurrentDMFrames();
+
+            // After switching dimensions, reset frame index to avoid referencing old frames
+            currentFrameIndex = DMCameras[currentDM].currentFrameIndex;
+            lastFrame = frames[frames.Count - 1].transform; // Set last frame to the last spawned frame
+        }
+
+
         // Check if creaturesCollected equals the number needed to spawn Frame 5
         if (creaturesCollected >= creaturesToCollect)
         {
